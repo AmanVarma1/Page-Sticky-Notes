@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Page Sticky Notes - Settings</title>
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="options.css">
+  <script src="theme.js"></script>
+</head>
+<body>
+  <main>
+    <h1>📝 Page Sticky Notes</h1>
+    <p class="sub">Settings, sync and backup. <span id="count"></span></p>
+
+    <section>
+      <h2>Appearance</h2>
+      <label class="row">
+        <span>Theme for notes and popup</span>
+        <select id="theme">
+          <option value="auto">Automatic (match system)</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </label>
+    </section>
+
+    <section>
+      <h2>Sync across devices</h2>
+      <label class="row">
+        <span>Sync my notes using my Chrome account</span>
+        <input type="checkbox" id="sync">
+      </label>
+      <p class="hint">Needs Chrome sign-in with sync turned on. Chrome limits synced data to about 100 KB in total and 8 KB per note, so very long notes are kept on this device only.</p>
+      <p id="syncStatus" class="status"></p>
+    </section>
+
+    <section id="aiSettings">
+      <h2>🤖 AI assistant</h2>
+      <p class="hint">Use Groq to chat about the page you're reading, your highlights and your notes. Your API key stays in this browser and is not included in note exports or sync.</p>
+      <label class="ai-field-label" for="groqApiKey">Groq API key</label>
+      <div class="ai-key-row">
+        <input id="groqApiKey" type="password" autocomplete="off" spellcheck="false" placeholder="Paste your Groq API key">
+        <button id="toggleGroqKey" type="button">Show</button>
+      </div>
+      <p class="hint">Create a key at <a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer">Groq Console</a>.</p>
+      <label class="ai-field-label" for="groqModel">Model</label>
+      <input id="groqModel" class="full-input" type="text" placeholder="openai/gpt-oss-20b" value="openai/gpt-oss-20b">
+      <div class="ai-buttons">
+        <button id="saveGroq" type="button">Save API settings</button>
+        <button id="testGroq" type="button">Save &amp; test connection</button>
+      </div>
+      <p id="groqStatus" class="status" role="status"></p>
+    </section>
+
+    <section>
+      <h2>Backup</h2>
+      <div class="row">
+        <span>Save every note to a JSON file, or restore from one.</span>
+        <div class="btns">
+          <button id="export">Export notes</button>
+          <button id="import">Import notes…</button>
+        </div>
+      </div>
+      <input type="file" id="importFile" accept=".json,application/json" hidden>
+      <p id="backupStatus" class="status"></p>
+    </section>
+
+    <section>
+      <h2>Shortcuts</h2>
+      <p class="hint">Alt+Shift+N add a note · Alt+Shift+L highlight selected text · Alt+Shift+H hide/show notes. Change them at <b>chrome://extensions/shortcuts</b>.</p>
+    </section>
+  </main>
+  <script src="options.js"></script>
+</body>
+</html>
